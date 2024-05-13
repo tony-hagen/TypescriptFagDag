@@ -1,12 +1,11 @@
 Punkter vi kan gå gjennom:
-String manipulation types
-Generics
-Awaited ?
-Record
-Union & intersect? 
-Object equality checker fra Tony sitt utils repo
-
-Oppgaver fra https://ghaiklor.github.io/type-challenges-solutions/en/
+- String manipulation types
+- Generics
+- Awaited ?
+- Record
+- Union & intersect? 
+- Object equality checker fra Tony sitt utils repo
+- Oppgaver fra https://ghaiklor.github.io/type-challenges-solutions/en/
 
 
 # Welcome to [Slidev](https://github.com/slidevjs/slidev)!
