@@ -72,7 +72,6 @@ interface Todo {
   completed: boolean;
   createdAt: number;
 }
-
 ```
 
 <div v-after class="grid grid-cols-2 gap-2 text-md mt-10">
@@ -82,8 +81,8 @@ interface Todo {
     <span>Record</span>
     <span>Pick</span>
     <span>Omit</span>
-    <span>Extract</span>
-    <span>Parameter</span>
+    <span>Union Types</span>
+    <span>Awaited</span>
 </div>
 
 ::right::
@@ -94,7 +93,7 @@ interface Todo {
 transition: fade-out
 ---
 
-## Partial
+## Partial - Husk å fjerne kommentarene
 ```ts {2-6|2-16|18-20|22-24} twoslash
 
 type Person = {
@@ -120,12 +119,209 @@ console.log(person1); // Output: { name: 'John', age: 0, email: 'unknown@example
 // Eksempel på bruk av createPerson-funksjonen med full informasjon
 const person2 = createPerson({ name: "Alice", age: 30, email: "alice@example.com" });
 console.log(person2); // Output: { name: 'Alice', age: 30, email: 'alice@example.com' }
-
 ```
 
 ---
-transition: slide-up
-level: 3
+transition: fade-out
+---
+## Required
+```ts {1-6|8-14|16-22} twoslash
+// Definisjon av en delvis Person-objekttype med noen egenskaper valgfrie
+type PartialPerson = {
+    name?: string;
+    age?: number;
+    email?: string;
+};
+
+// Definisjon av en obligatorisk Person-objekttype med alle egenskapene påkrevd
+type RequiredPerson = Required<PartialPerson>;
+
+// En funksjon som oppretter en ny person med obligatoriske egenskaper
+function createRequiredPerson(data: RequiredPerson): RequiredPerson {
+    return data;
+}
+
+// Eksempel på bruk av createRequiredPerson-funksjonen med full informasjon
+const person1: RequiredPerson = createRequiredPerson({ name: "John", age: 30, email: "john@example.com" });
+console.log(person1); // Output: { name: 'John', age: 30, email: 'john@example.com' }
+
+// Eksempel på bruk av createRequiredPerson-funksjonen med manglende informasjon
+// Dette vil resultere i en TypeScript-feil fordi alle egenskapene er påkrevd
+// const person2: RequiredPerson = createRequiredPerson({ name: "Alice" });
+```
+
+---
+transition: fade-out
+---
+## Readonly
+
+```ts {1-6|8-16|18-25} twoslash
+// Definisjon av en Person-objekttype med egenskaper som navn, alder og e-post
+type Person = {
+    readonly name: string;
+    readonly age: number;
+    readonly email: string;
+};
+
+// En funksjon som oppretter en ny person med angitte egenskaper
+function createPerson(name: string, age: number, email: string): Person {
+    // Returnerer en ny person med angitte egenskaper
+    return {
+        name,
+        age,
+        email,
+    };
+}
+
+// Opprett en ny person
+const person1: Person = createPerson("John", 30, "john@example.com");
+
+// Forsøk på å endre egenskapen til en readonly-egenskap vil føre til en TypeScript-feil
+// person1.name = "Alice"; // Dette vil resultere i en feil: Cannot assign to 'name' 
+//because it is a read-only property.
+
+console.log(person1); // Output: { name: 'John', age: 30, email: 'john@example.com' }
+```
+
+---
+transition: fade-out
+---
+## Record
+
+```ts {1-11|13-18|20-25} twoslash
+// Definisjon av en Record-type som inneholder et ordforråd der nøkler er ord og verdier er definisjoner
+type Vocabulary = Record<string, string>;
+
+// En funksjon som søker etter definisjonen av et gitt ord i ordboken
+function findDefinition(word: string, vocabulary: Vocabulary): string {
+    if (vocabulary[word]) {
+        return vocabulary[word];
+    } else {
+        return "Definition not found.";
+    }
+}
+
+// Et eksempel på et ordforråd
+const dictionary: Vocabulary = {
+    "apple": "A fruit with a rounded shape, typically red, yellow, or green skin, and crisp flesh.",
+    "banana": "A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe.",
+    "orange": "A round juicy citrus fruit with a tough bright reddish-yellow rind.",
+};
+
+// Søk etter definisjonen av et ord i ordboken
+console.log(findDefinition("apple", dictionary)); 
+// Output: A fruit with a rounded shape, typically red, yellow, or green skin, and crisp flesh.
+console.log(findDefinition("banana", dictionary)); 
+// Output: A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe.
+console.log(findDefinition("grape", dictionary)); // Output: Definition not found.
+```
+
+---
+transition: fade-out
+---
+## Pick
+
+```ts {1-7|9-21|23} twoslash
+interface Person {
+    name: string;
+    age: number;
+    email: string;
+    address: string;
+}
+type GrunnleggendeInfo = Pick<Person, "name" | "email">;
+
+function visGrunnleggendeInfo(info: GrunnleggendeInfo): void {
+    console.log(`Navn: ${info.name}, E-post: ${info.email}`);
+}
+const person: Person = {
+    name: "Ola Nordmann",
+    age: 30,
+    email: "ola@example.com",
+    address: "Gateveien 123, Enhverby"
+};
+const grunnleggendeInfo: GrunnleggendeInfo = {
+    name: person.name,
+    email: person.email
+};
+
+visGrunnleggendeInfo(grunnleggendeInfo); // Output: Navn: Ola Nordmann, E-post: ola@example.com
+```
+
+---
+transition: fade-out
+---
+## Omit
+
+```ts {1-8|10-14|16-22} twoslash
+interface Person {
+    name: string;
+    age: number;
+    email: string;
+    address: string;
+}
+type PersonligInfo = Omit<Person, "age" | "address">;
+
+function visPersonligInfo(info: PersonligInfo): void {
+    console.log(`Navn: ${info.name}, E-post: ${info.email}`);
+}
+
+const person: Person = {
+    name: "Ola Nordmann",
+    age: 30,
+    email: "ola@example.com",
+    address: "Gateveien 123, Enhverby"
+};
+const personligInfo: PersonligInfo = {
+    name: person.name,
+    email: person.email
+};
+
+visPersonligInfo(personligInfo); // Output: Navn: Ola Nordmann, E-post: ola@example.com
+```
+
+---
+transition: fade-out
+---
+## Union Types
+
+```ts {2-7|9-14|16-22} twoslash
+// Unionstype som representerer forskjellige typer biler
+type Car = "Sedan" | "SUV" | "Truck" | "Van" | "Convertible";
+
+// Type som utelukker "Truck" og "Van" fra Car-unionen
+type NonCommercialCar = Exclude<Car, "Truck" | "Van">;
+
+// Resultatet vil være "Sedan" | "SUV" | "Convertible"
+
+// Type som kun inkluderer "Sedan" og "Convertible" fra Car-unionen
+type LuxuryCar = Extract<Car, "Sedan" | "Convertible">;
+
+// Resultatet vil være "Sedan" | "Convertible"
+```
+
+---
+transition: fade-out
+---
+## Awaited
+
+```ts {2-7|9-14|16-22} twoslash
+async function fetchUserData(): Promise<{ name: string; age: number }> {
+    // Anta at dette er en API-forespørsel som henter brukerdata
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve({ name: "John Doe", age: 30 });
+        }, 2000); // Simulerer en 2 sekunders forsinkelse
+    });
+}
+
+// Definerer en type som representerer dataene som returneres fra fetchUserData-funksjonen når vi venter på resultatet
+type UserData = Awaited<ReturnType<typeof fetchUserData>>;
+
+// Vi bruker Awaited for å få typen av det som blir returnert når vi venter på fetchData-funksjonen
+```
+
+---
+transition: fade-out
 ---
 
 # TEST TEST
