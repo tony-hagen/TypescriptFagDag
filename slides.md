@@ -3,7 +3,8 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
+background: https://www.sitepen.com/typescript-code-blocks.34Qg3nlF.svg
+# background: https://img-c.udemycdn.com/course/750x422/986406_89c5_3.jpg
 # some information about your slides, markdown enabled
 title: Welcome to Slidev
 info: |
@@ -24,23 +25,12 @@ transition: slide-left
 mdc: true
 ---
 
-# Welcome to Slidev
+# 
 
-Presentation slides for developers
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
-  </span>
-</div>
-
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub" title="Open in GitHub"
+<div class="abs-br h-fit flex">
+  <a href="https://github.com/tony-hagen/TypescriptFagDag" target="_blank" alt="GitHub" title="Open in GitHub"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
+    <carbon-logo-github /> GitHub repo
   </a>
 </div>
 
@@ -49,12 +39,98 @@ The last comment block of each slide will be treated as slide notes. It will be 
 -->
 
 ---
+transition: slide-down
+---
+
+# Foredragsholdere 
+
+<div class="flex gap-20 mt-20">
+    <div class="flex flex-col gap-3">
+        <img class="w-30%" src="imgs/Tony Hagen.jpg" alt="big man" />
+        <span class="text-md">Tony Hagen</span>
+        <p class="text-sm">Senior frontend-utvikler, mentor, disc golf entusiast. Mest erfaring med React, Typescript og Angular.</p>
+    </div>
+    <div class="flex flex-col gap-3">
+            <img class="w-30%" src="imgs/Deividas Svaikauskas.jpg" alt="dave" />
+        <span class="text-md">Deividas Svaikauskas</span>
+        <p class="text-sm">Bare frontend-utvikler, mentee (ikke Tony sin), volleyball pro wannabe. Mest erfaring med React, Typescript og Vue.</p>
+    </div>
+</div>
+
+---
 transition: fade-out
+layout: two-cols
+---
+
+# Utility Types
+
+```ts {*|2|3-6|*} twoslash
+
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+  createdAt: number;
+}
+
+```
+
+<div v-after class="grid grid-cols-2 gap-2 text-md mt-10">
+    <span>Partial</span>
+    <span>Required</span>
+    <span>Readonly</span>
+    <span>Record</span>
+    <span>Pick</span>
+    <span>Omit</span>
+    <span>Extract</span>
+    <span>Parameter</span>
+</div>
+
+::right::
+
+<img v-after src="/imgs/typescript utility types.JPG" alt="utility types nav" />
+
+---
+transition: fade-out
+---
+
+## Partial
+```ts {2-6|2-16|18-20|22-24} twoslash
+
+type Person = {
+    name: string;
+    age: number;
+    email: string;
+};
+
+// En funksjon som oppretter en ny person med valgfrie egenskaper
+function createPerson(data: Partial<Person>): Person {
+    // Vi kombinerer det partielle objektet med en standardperson for å sikre at alle nødvendige egenskaper er der
+    return {
+        name: data.name || "Unknown",
+        age: data.age || 0,
+        email: data.email || "unknown@example.com",
+    };
+}
+
+// Eksempel på bruk av createPerson-funksjonen med delvis informasjon
+const person1 = createPerson({ name: "John" });
+console.log(person1); // Output: { name: 'John', age: 0, email: 'unknown@example.com' }
+
+// Eksempel på bruk av createPerson-funksjonen med full informasjon
+const person2 = createPerson({ name: "Alice", age: 30, email: "alice@example.com" });
+console.log(person2); // Output: { name: 'Alice', age: 30, email: 'alice@example.com' }
+
+```
+
+---
+transition: slide-up
+level: 3
 ---
 
 # TEST TEST
 
-```ts {all|5|7|all} twoslash
+```ts {*|5|7|*} twoslash
 // TwoSlash enables TypeScript hover information
 // and errors in markdown code blocks
 // More at https://shiki.style/packages/twoslash
