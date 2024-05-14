@@ -324,22 +324,16 @@ type UserData = Awaited<ReturnType<typeof fetchUserData>>;
 transition: fade-out
 ---
 
-# TEST TEST
+# TypeScript Oppgaver
 
-```ts {*|5|7|*} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
+<div class="abs-br">
+  <a href="https://ghaiklor.github.io/type-challenges-solutions/en/" target="_blank" alt="challenges" title="challenges"
+    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+    <img class="w-20%" src="/imgs/ts logo.webp" /> TS Challenges
+  </a>
+</div>
 
-type Test = number | 'zero'
-
-const abc: Test = 12;
-const bc: Test = 'zero';
-
-```
-
-
-<div>hello</div>
+<img v-after src="/imgs/typescript challenges.JPG" alt="ts challenges" />
 
 ---
 transition: fade-out
