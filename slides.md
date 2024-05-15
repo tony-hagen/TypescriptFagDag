@@ -93,18 +93,15 @@ interface Todo {
 transition: fade-out
 ---
 
-## Partial - Husk å fjerne kommentarene
-```ts {2-6|2-16|18-20|22-24} twoslash
-
+## Partial
+```ts {1-5|1-13|15-16|18-19} twoslash
 type Person = {
     name: string;
     age: number;
     email: string;
 };
 
-// En funksjon som oppretter en ny person med valgfrie egenskaper
 function createPerson(data: Partial<Person>): Person {
-    // Vi kombinerer det partielle objektet med en standardperson for å sikre at alle nødvendige egenskaper er der
     return {
         name: data.name || "Unknown",
         age: data.age || 0,
@@ -112,11 +109,9 @@ function createPerson(data: Partial<Person>): Person {
     };
 }
 
-// Eksempel på bruk av createPerson-funksjonen med delvis informasjon
 const person1 = createPerson({ name: "John" });
 console.log(person1); // Output: { name: 'John', age: 0, email: 'unknown@example.com' }
 
-// Eksempel på bruk av createPerson-funksjonen med full informasjon
 const person2 = createPerson({ name: "Alice", age: 30, email: "alice@example.com" });
 console.log(person2); // Output: { name: 'Alice', age: 30, email: 'alice@example.com' }
 ```
@@ -125,29 +120,24 @@ console.log(person2); // Output: { name: 'Alice', age: 30, email: 'alice@example
 transition: fade-out
 ---
 ## Required
-```ts {1-6|8-14|16-22} twoslash
-// Definisjon av en delvis Person-objekttype med noen egenskaper valgfrie
+```ts {1-5|1-7|9-11|13-17} twoslash
 type PartialPerson = {
     name?: string;
     age?: number;
     email?: string;
 };
 
-// Definisjon av en obligatorisk Person-objekttype med alle egenskapene påkrevd
 type RequiredPerson = Required<PartialPerson>;
 
-// En funksjon som oppretter en ny person med obligatoriske egenskaper
 function createRequiredPerson(data: RequiredPerson): RequiredPerson {
     return data;
 }
 
-// Eksempel på bruk av createRequiredPerson-funksjonen med full informasjon
 const person1: RequiredPerson = createRequiredPerson({ name: "John", age: 30, email: "john@example.com" });
 console.log(person1); // Output: { name: 'John', age: 30, email: 'john@example.com' }
 
-// Eksempel på bruk av createRequiredPerson-funksjonen med manglende informasjon
-// Dette vil resultere i en TypeScript-feil fordi alle egenskapene er påkrevd
 // const person2: RequiredPerson = createRequiredPerson({ name: "Alice" });
+// Dette vil resultere i en TypeScript-feil fordi alle egenskapene er påkrevd
 ```
 
 ---
@@ -155,17 +145,14 @@ transition: fade-out
 ---
 ## Readonly
 
-```ts {1-6|8-16|18-25} twoslash
-// Definisjon av en Person-objekttype med egenskaper som navn, alder og e-post
+```ts {1-5|1-13|15|17-21} twoslash
 type Person = {
     readonly name: string;
     readonly age: number;
     readonly email: string;
 };
 
-// En funksjon som oppretter en ny person med angitte egenskaper
 function createPerson(name: string, age: number, email: string): Person {
-    // Returnerer en ny person med angitte egenskaper
     return {
         name,
         age,
@@ -173,11 +160,10 @@ function createPerson(name: string, age: number, email: string): Person {
     };
 }
 
-// Opprett en ny person
 const person1: Person = createPerson("John", 30, "john@example.com");
 
 // Forsøk på å endre egenskapen til en readonly-egenskap vil føre til en TypeScript-feil
-// person1.name = "Alice"; // Dette vil resultere i en feil: Cannot assign to 'name' 
+// person1.name = "Alice"; Dette vil resultere i en feil: Cannot assign to 'name' 
 //because it is a read-only property.
 
 console.log(person1); // Output: { name: 'John', age: 30, email: 'john@example.com' }
@@ -188,11 +174,9 @@ transition: fade-out
 ---
 ## Record
 
-```ts {1-11|13-18|20-25} twoslash
-// Definisjon av en Record-type som inneholder et ordforråd der nøkler er ord og verdier er definisjoner
+```ts {1|1-9|11-14|11-18|11-20|11-22} twoslash
 type Vocabulary = Record<string, string>;
 
-// En funksjon som søker etter definisjonen av et gitt ord i ordboken
 function findDefinition(word: string, vocabulary: Vocabulary): string {
     if (vocabulary[word]) {
         return vocabulary[word];
@@ -201,19 +185,18 @@ function findDefinition(word: string, vocabulary: Vocabulary): string {
     }
 }
 
-// Et eksempel på et ordforråd
 const dictionary: Vocabulary = {
     "apple": "A fruit with a rounded shape, typically red, yellow, or green skin, and crisp flesh.",
     "banana": "A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe.",
     "orange": "A round juicy citrus fruit with a tough bright reddish-yellow rind.",
 };
 
-// Søk etter definisjonen av et ord i ordboken
 console.log(findDefinition("apple", dictionary)); 
 // Output: A fruit with a rounded shape, typically red, yellow, or green skin, and crisp flesh.
 console.log(findDefinition("banana", dictionary)); 
 // Output: A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe.
-console.log(findDefinition("grape", dictionary)); // Output: Definition not found.
+console.log(findDefinition("grape", dictionary)); 
+// Output: Definition not found.
 ```
 
 ---
@@ -221,8 +204,8 @@ transition: fade-out
 ---
 ## Pick
 
-```ts {1-7|9-21|23} twoslash
-interface Person {
+```ts {1-7|9-11|12-21|23} twoslash
+type Person = {
     name: string;
     age: number;
     email: string;
@@ -252,8 +235,8 @@ transition: fade-out
 ---
 ## Omit
 
-```ts {1-8|10-14|16-22} twoslash
-interface Person {
+```ts {1-7|9-11|13-22|24} twoslash
+type Person = {
     name: string;
     age: number;
     email: string;
@@ -282,20 +265,15 @@ visPersonligInfo(personligInfo); // Output: Navn: Ola Nordmann, E-post: ola@exam
 ---
 transition: fade-out
 ---
-## Union Types
+## Union Types - Exclude og Extract
 
-```ts {2-7|9-14|16-22} twoslash
-// Unionstype som representerer forskjellige typer biler
+```ts {1|1-4|1,6-7} twoslash
 type Car = "Sedan" | "SUV" | "Truck" | "Van" | "Convertible";
 
-// Type som utelukker "Truck" og "Van" fra Car-unionen
 type NonCommercialCar = Exclude<Car, "Truck" | "Van">;
-
 // Resultatet vil være "Sedan" | "SUV" | "Convertible"
 
-// Type som kun inkluderer "Sedan" og "Convertible" fra Car-unionen
 type LuxuryCar = Extract<Car, "Sedan" | "Convertible">;
-
 // Resultatet vil være "Sedan" | "Convertible"
 ```
 
@@ -304,19 +282,16 @@ transition: fade-out
 ---
 ## Awaited
 
-```ts {2-7|9-14|16-22} twoslash
+```ts {1-7|1-10} twoslash
 async function fetchUserData(): Promise<{ name: string; age: number }> {
-    // Anta at dette er en API-forespørsel som henter brukerdata
     return new Promise(resolve => {
         setTimeout(() => {
             resolve({ name: "John Doe", age: 30 });
-        }, 2000); // Simulerer en 2 sekunders forsinkelse
+        }, 2000);
     });
 }
 
-// Definerer en type som representerer dataene som returneres fra fetchUserData-funksjonen når vi venter på resultatet
 type UserData = Awaited<ReturnType<typeof fetchUserData>>;
-
 // Vi bruker Awaited for å få typen av det som blir returnert når vi venter på fetchData-funksjonen
 ```
 
