@@ -323,6 +323,34 @@ type UserData = Awaited<ReturnType<typeof fetchUserData>>;
 ---
 transition: fade-out
 ---
+## Generic types
+
+````md magic-move
+```ts {*} twoslash
+//Hvis vi ser på koden fra forrige slide så kan man se en mulighet til å gjøre denne generisk.
+async function fetchUserData(): Promise<{ name: string; age: number }> {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve({ name: "John Doe", age: 30 });
+        }, 2000);
+    });
+} 
+```
+```ts {*|3|4-5|6|*} twoslash
+// Her bruker vi generics til å spesifisiere hvilken type vi forventer å få returnert
+// På denne måten er funksjonen mer generisk og kan hente alle typer uten å miste type safety
+async function fetchData<T>(url: string ): Promise<T> {
+    const response = await fetch(url)
+    const data = await response.json()
+    return data as Promise<T>;
+}
+```
+````
+
+
+---
+transition: fade-out
+---
 
 # TypeScript Oppgaver
 
