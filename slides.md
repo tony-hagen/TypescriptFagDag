@@ -338,15 +338,48 @@ async function fetchUserData(): Promise<{ name: string; age: number }> {
 ```
 ```ts {*|3|4-5|6|*} twoslash
 // Her bruker vi generics til å spesifisiere hvilken type vi forventer å få returnert
-// På denne måten er funksjonen mer generisk og kan hente alle typer uten å miste type safety
+// På denne måten er funksjonen mer generisk og kan hente data av alle typer uten å miste type safety
 async function fetchData<T>(url: string ): Promise<T> {
     const response = await fetch(url)
     const data = await response.json()
     return data as Promise<T>;
 }
 ```
+```ts {*} twoslash
+async function fetchData<T>(url: string ): Promise<T> {
+    const response = await fetch(url)
+    const data = await response.json()
+    return data as Promise<T>;
+}
+
+fetchData<User>("api/user/123");
+```
+```ts {*} twoslash
+async function fetchData<T>(url: string ): Promise<T> {
+    const response = await fetch(url)
+    const data = await response.json()
+    return data as Promise<T>;
+}
+
+fetchData<User>("api/user/123");
+fetchData<User[]>("api/users");
+```
 ````
 
+---
+transition: fade-out
+---
+## Generic types
+
+```ts {monaco}
+// Man kan også ha mer enn en generic type. 
+function getProperty<T, Key extends keyof T>(obj: T, key: Key){
+  return obj[key]
+}
+
+let x = { a: 1, b: "b", c: true, d: 4 };
+getProperty(x, "c");
+```
 
 ---
 transition: fade-out
