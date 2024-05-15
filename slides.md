@@ -23,6 +23,7 @@ drawings:
 transition: slide-left
 # enable MDC Syntax: https://sli.dev/guide/syntax#mdc-syntax
 mdc: true
+hideInToc: true
 ---
 
 # 
@@ -39,7 +40,8 @@ The last comment block of each slide will be treated as slide notes. It will be 
 -->
 
 ---
-transition: slide-down
+transition: slide-up
+hideInToc: true
 ---
 
 # Foredragsholdere 
@@ -56,6 +58,15 @@ transition: slide-down
         <p class="text-sm">Bare frontend-utvikler, mentee (ikke Tony sin), volleyball pro wannabe. Mest erfaring med React, Typescript og Vue.</p>
     </div>
 </div>
+
+---
+transition: fade-out
+hideInToc: true
+---
+
+# Table of contents
+
+<Toc class="text-xs" minDepth="1" maxDepth="2"></Toc>
 
 ---
 transition: fade-out
