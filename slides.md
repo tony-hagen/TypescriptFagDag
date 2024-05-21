@@ -370,6 +370,44 @@ getProperty(x, "c");
 ---
 transition: fade-out
 ---
+## String Manipulation types
+Husk å gjøre denne listen finere
+
+Uppercase
+Lowercase
+Capitalize
+Uncapitalize
+
+---
+transition: fade-out
+
+---
+
+### String Manipulation types
+
+```ts {monaco}
+// Teknisk sett kan du bruke dette til å for eksempel påkreve uppercase
+declare function foo<T extends string>(str: T extends Uppercase<T> ? T : never): void;
+
+foo('ABCDEF');
+```
+---
+transition: fade-out
+
+---
+### String Manipulation types
+```ts {*} twoslash
+// Eller så kan man lage en funksjon som returnerer en transformert versjon av en string
+
+declare function toUpper<T extends string>(val: T): Uppercase<T>;
+
+toUpper('foo'); // "FOO"
+
+```
+
+---
+transition: fade-out
+---
 
 # TypeScript Oppgaver
 
@@ -384,6 +422,7 @@ transition: fade-out
 
 ---
 transition: fade-out
+
 ---
 
 # What is Slidev?
