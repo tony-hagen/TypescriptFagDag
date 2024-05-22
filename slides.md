@@ -59,16 +59,6 @@ layout: two-cols
 
 # Utility Types
 
-```ts {*|2|3-6|*} twoslash
-
-interface Todo {
-  title: string;
-  description: string;
-  completed: boolean;
-  createdAt: number;
-}
-```
-
 <div v-after class="grid grid-cols-2 gap-2 text-md mt-10">
     <span>Partial</span>
     <span>Required</span>
@@ -167,36 +157,6 @@ console.log(person1); // Output: { name: 'John', age: 30, email: 'john@example.c
 ---
 transition: fade-out
 ---
-## Record
-
-```ts {1|1-9|11-14|11-18|11-20|11-22} twoslash
-type Vocabulary = Record<string, string>;
-
-function findDefinition(word: string, vocabulary: Vocabulary): string {
-    if (vocabulary[word]) {
-        return vocabulary[word];
-    } else {
-        return "Definition not found.";
-    }
-}
-
-const dictionary: Vocabulary = {
-    "apple": "A fruit with a rounded shape, typically red, yellow, or green skin, and crisp flesh.",
-    "banana": "A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe.",
-    "orange": "A round juicy citrus fruit with a tough bright reddish-yellow rind.",
-};
-
-console.log(findDefinition("apple", dictionary)); 
-// Output: A fruit with a rounded shape, typically red, yellow, or green skin, and crisp flesh.
-console.log(findDefinition("banana", dictionary)); 
-// Output: A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe.
-console.log(findDefinition("grape", dictionary)); 
-// Output: Definition not found.
-```
-
----
-transition: fade-out
----
 ## Pick
 
 ```ts {1-7|9-11|12-21|23} twoslash
@@ -270,6 +230,36 @@ type NonCommercialCar = Exclude<Car, "Truck" | "Van">;
 
 type LuxuryCar = Extract<Car, "Sedan" | "Convertible">;
 // Resultatet vil være "Sedan" | "Convertible"
+```
+
+---
+transition: fade-out
+---
+## Record
+
+```ts {1|1-9|11-14|11-18|11-20|11-22} twoslash
+type Vocabulary = Record<string, string>;
+
+function findDefinition(word: string, vocabulary: Vocabulary): string {
+    if (vocabulary[word]) {
+        return vocabulary[word];
+    } else {
+        return "Definition not found.";
+    }
+}
+
+const dictionary: Vocabulary = {
+    "apple": "A fruit with a rounded shape, typically red, yellow, or green skin, and crisp flesh.",
+    "banana": "A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe.",
+    "orange": "A round juicy citrus fruit with a tough bright reddish-yellow rind.",
+};
+
+console.log(findDefinition("apple", dictionary)); 
+// Output: A fruit with a rounded shape, typically red, yellow, or green skin, and crisp flesh.
+console.log(findDefinition("banana", dictionary)); 
+// Output: A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe.
+console.log(findDefinition("grape", dictionary)); 
+// Output: Definition not found.
 ```
 
 ---
@@ -361,7 +351,6 @@ transition: fade-out
   <li>Lowercase&lt;T&gt;</li>
   <li>Capitalize&lt;T&gt;</li>
   <li>Uncapitalize&lt;T&gt;</li>
-  <li>Trim&lt;T&gt;</li>
 </ul>
 
 ---
@@ -370,7 +359,7 @@ transition: fade-out
 ---
 
 ### String Manipulation types
-
+#
 ```ts {monaco}
 // Teknisk sett kan du bruke dette til å for eksempel påkreve uppercase
 declare function onlyUpper<T extends string>(str: T extends Uppercase<T> ? T : never): void;
@@ -382,6 +371,7 @@ transition: fade-out
 
 ---
 ### String Manipulation types
+#
 ```ts {monaco}
 // Eller så kan man lage en funksjon som returnerer en transformert versjon av en string
 
@@ -396,6 +386,7 @@ transition: fade-out
 
 ---
 ### String Manipulation types
+#
 ```ts {monaco}
 // Eller så kan man kombinere..
 
