@@ -382,7 +382,7 @@ transition: fade-out
 
 ---
 ### String Manipulation types
-```ts {*} twoslash
+```ts {monaco}
 // Eller så kan man lage en funksjon som returnerer en transformert versjon av en string
 
 declare function toUpper<T extends string>(val: T): Uppercase<T>;
@@ -396,7 +396,7 @@ transition: fade-out
 
 ---
 ### String Manipulation types
-```ts {*} twoslash
+```ts {monaco}
 // Eller så kan man kombinere..
 
 declare function toCapitalizedLower<T extends string>(val: T): Capitalize<Lowercase<T>>;
