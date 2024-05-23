@@ -402,14 +402,40 @@ transition: fade-out
 
 # TypeScript Oppgaver
 
+---
+transition: fade-out
+---
+
+## Enklere og mer realistiske oppgaver
+
 <div class="abs-br">
-  <a href="https://ghaiklor.github.io/type-challenges-solutions/en/" target="_blank" alt="challenges" title="challenges"
+  <a href="https://typescript-exercises.github.io/#exercise=1&file=%2Findex.ts" target="_blank" alt="challenges_easy" title="challenges_easy"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <img class="w-20%" src="/imgs/ts logo.webp" /> TS Challenges
+    <img class="w-20%" src="/imgs/ts logo.webp" /> Enklere TS Oppgaver
   </a>
 </div>
 
-<img v-after src="/imgs/typescript challenges.JPG" alt="ts challenges" />
+<br></br>
+<br></br>
+<img class="w-50%" v-after src="/imgs/typescript easier exercises.JPG" alt="ts challenges" />
+
 
 ---
 transition: fade-out
+---
+
+## Vanskeligere oppgaver
+
+<div class="abs-br">
+  <a href="https://ghaiklor.github.io/type-challenges-solutions/en/" target="_blank" alt="challenges_hard" title="challenges_hard"
+    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+    <img class="w-20%" src="/imgs/ts logo.webp" /> Vanskeligere TS Oppgaver
+  </a>
+</div>
+<br></br>
+<br></br>
+<img class="w-80%" v-after src="/imgs/typescript challenges.JPG" alt="ts challenges" />
+
+---
+transition: fade-out
+---
