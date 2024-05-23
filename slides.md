@@ -167,30 +167,31 @@ transition: fade-out
 ---
 ## Pick
 
-```ts {1-7|9-11|12-21|23} twoslash
+```ts {1-7|9-18|20-22|20-24} twoslash
 type Person = {
     name: string;
     age: number;
     email: string;
     address: string;
 }
-type GrunnleggendeInfo = Pick<Person, "name" | "email">;
+type MainInfo = Pick<Person, "name" | "email">;
 
-function visGrunnleggendeInfo(info: GrunnleggendeInfo): void {
-    console.log(`Navn: ${info.name}, E-post: ${info.email}`);
-}
 const person: Person = {
     name: "Ola Nordmann",
     age: 30,
     email: "ola@example.com",
     address: "Gateveien 123, Enhverby"
 };
-const grunnleggendeInfo: GrunnleggendeInfo = {
+const mainInfo: MainInfo = {
     name: person.name,
     email: person.email
 };
 
-visGrunnleggendeInfo(grunnleggendeInfo); // Output: Navn: Ola Nordmann, E-post: ola@example.com
+function showMainInfo(info: MainInfo): void {
+    console.log(`Navn: ${info.name}, E-post: ${info.email}`);
+}
+
+showMainInfo(mainInfo); // Output: Navn: Ola Nordmann, E-post: ola@example.com
 ```
 
 ---
@@ -198,18 +199,14 @@ transition: fade-out
 ---
 ## Omit
 
-```ts {1-7|9-11|13-22|24} twoslash
+```ts {1-7|9-18|19-23|19-24} twoslash
 type Person = {
     name: string;
     age: number;
     email: string;
     address: string;
 }
-type PersonligInfo = Omit<Person, "age" | "address">;
-
-function visPersonligInfo(info: PersonligInfo): void {
-    console.log(`Navn: ${info.name}, E-post: ${info.email}`);
-}
+type PersonInfo = Omit<Person, "age" | "address">;
 
 const person: Person = {
     name: "Ola Nordmann",
@@ -217,12 +214,16 @@ const person: Person = {
     email: "ola@example.com",
     address: "Gateveien 123, Enhverby"
 };
-const personligInfo: PersonligInfo = {
+const personInfo: PersonInfo = {
     name: person.name,
     email: person.email
 };
 
-visPersonligInfo(personligInfo); // Output: Navn: Ola Nordmann, E-post: ola@example.com
+function showPersonInfo(info: PersonInfo): void {
+    console.log(`Navn: ${info.name}, E-post: ${info.email}`);
+}
+
+showPersonInfo(personInfo); // Output: Navn: Ola Nordmann, E-post: ola@example.com
 ```
 
 ---
