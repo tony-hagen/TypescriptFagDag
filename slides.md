@@ -417,6 +417,8 @@ transition: fade-out
 ---
 
 # TypeScript Oppgaver
+<br />
+<iframe src="https://i.gifer.com/6DMO.gif" width="480" height="270" frameBorder="0"></iframe>
 
 ---
 transition: fade-out
