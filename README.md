@@ -1,11 +1,6 @@
-Punkter vi kan gå gjennom:
-- String manipulation types
-- Generics
-- Awaited ?
-- Record
-- Union & intersect? 
-- Object equality checker fra Tony sitt utils repo
-- Oppgaver fra https://ghaiklor.github.io/type-challenges-solutions/en/
+
+- Enklere oppgaver: https://typescript-exercises.github.io/#exercise=1&file=%2Findex.ts
+- Vanskeligere oppgaver: https://ghaiklor.github.io/type-challenges-solutions/en/
 
 
 # Welcome to [Slidev](https://github.com/slidevjs/slidev)!
