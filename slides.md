@@ -247,8 +247,14 @@ transition: fade-out
 ## Record
 <br />
 
-```ts {1|1-9|11-14|11-18|11-20|11-22} twoslash
+```ts {1|1-7|9-15|*} twoslash
 type Vocabulary = Record<string, string>;
+
+const dictionary: Vocabulary = {
+    "apple": "A fruit with a rounded shape, typically red, yellow, or green skin, and crisp flesh.",
+    "banana": "A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe.",
+    "orange": "A round juicy citrus fruit with a tough bright reddish-yellow rind.",
+};
 
 function findDefinition(word: string, vocabulary: Vocabulary): string {
     if (vocabulary[word]) {
@@ -258,18 +264,27 @@ function findDefinition(word: string, vocabulary: Vocabulary): string {
     }
 }
 
-const dictionary: Vocabulary = {
-    "apple": "A fruit with a rounded shape, typically red, yellow, or green skin, and crisp flesh.",
-    "banana": "A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe.",
-    "orange": "A round juicy citrus fruit with a tough bright reddish-yellow rind.",
-};
+findDefinition("apple", dictionary); 
+// Output: "A fruit with a rounded shape, typically red, yellow, or green skin, and crisp flesh."
+findDefinition("banana", dictionary); 
+// Output: "A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe."
+findDefinition("grape", dictionary); 
+// Output: "Definition not found."
+```
 
-console.log(findDefinition("apple", dictionary)); 
-// Output: A fruit with a rounded shape, typically red, yellow, or green skin, and crisp flesh.
-console.log(findDefinition("banana", dictionary)); 
-// Output: A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe.
-console.log(findDefinition("grape", dictionary)); 
-// Output: Definition not found.
+---
+transition: fade-out
+---
+## Awaited
+#
+#### Awaited "pakker ut" Promises
+<br />
+
+```ts {1| *} twoslash
+type MyPromise = Promise<string>;
+
+type MyAwaited = Awaited<MyPromise>
+
 ```
 
 ---
@@ -306,6 +321,14 @@ async function fetchUserData(): Promise<{ name: string; age: number }> {
             resolve({ name: "John Doe", age: 30 });
         }, 2000);
     });
+} 
+```
+```ts {*} twoslash
+//Bytter til et litt mer reelt eksempel
+async function fetchUserData(): Promise<{ name: string; age: number }> {
+    const response = await fetch("api/user/123")
+    const data = await response.json()
+    return data as Promise<{ name: string; age: number }>;
 } 
 ```
 ```ts {*|3|4-5|6|*} twoslash
