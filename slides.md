@@ -50,7 +50,7 @@ hideInToc: true
 
 # Table of contents
 
-<Toc class="text-xs" minDepth="1" maxDepth="2"></Toc>
+<Toc class="text-sm" minDepth="1" maxDepth="2"></Toc>
 
 ---
 transition: fade-out
@@ -58,7 +58,7 @@ layout: two-cols
 ---
 
 # Utility Types
-
+<br />
 <div v-after class="grid grid-cols-2 gap-2 text-md mt-10">
     <span>Partial</span>
     <span>Required</span>
@@ -71,6 +71,9 @@ layout: two-cols
 </div>
 
 ::right::
+<br />
+<br />
+<br />
 
 <img v-after src="/imgs/typescript utility types.JPG" alt="utility types nav" />
 
@@ -79,6 +82,8 @@ transition: fade-out
 ---
 
 ## Partial
+<br />
+
 ```ts {1-5|1-13|15-16|18-19} twoslash
 type Person = {
     name: string;
@@ -105,6 +110,8 @@ console.log(person2); // Output: { name: 'Alice', age: 30, email: 'alice@example
 transition: fade-out
 ---
 ## Required
+<br />
+
 ```ts {1-5|1-7|9-11|13-17} twoslash
 type PartialPerson = {
     name?: string;
@@ -129,6 +136,7 @@ console.log(person1); // Output: { name: 'John', age: 30, email: 'john@example.c
 transition: fade-out
 ---
 ## Readonly
+<br />
 
 ```ts {1-5|1-13|15|17-21} twoslash
 type Person = {
@@ -221,6 +229,7 @@ visPersonligInfo(personligInfo); // Output: Navn: Ola Nordmann, E-post: ola@exam
 transition: fade-out
 ---
 ## Union Types - Exclude og Extract
+<br />
 
 ```ts {1|1-4|1,6-7} twoslash
 type Car = "Sedan" | "SUV" | "Truck" | "Van" | "Convertible";
@@ -236,6 +245,7 @@ type LuxuryCar = Extract<Car, "Sedan" | "Convertible">;
 transition: fade-out
 ---
 ## Record
+<br />
 
 ```ts {1|1-9|11-14|11-18|11-20|11-22} twoslash
 type Vocabulary = Record<string, string>;
@@ -266,6 +276,7 @@ console.log(findDefinition("grape", dictionary));
 transition: fade-out
 ---
 ## Awaited
+<br /> 
 
 ```ts {1-7|1-10} twoslash
 async function fetchUserData(): Promise<{ name: string; age: number }> {
@@ -284,6 +295,7 @@ type UserData = Awaited<ReturnType<typeof fetchUserData>>;
 transition: fade-out
 ---
 ## Generic types
+<br />
 
 ````md magic-move
 ```ts {*} twoslash
@@ -330,6 +342,7 @@ fetchData<User[]>("api/users");
 transition: fade-out
 ---
 ## Generic types
+<br />
 
 ```ts {monaco}
 // Man kan også ha mer enn en generic type. 
@@ -359,7 +372,8 @@ transition: fade-out
 ---
 
 ### String Manipulation types
-#
+<br />
+
 ```ts {monaco}
 // Teknisk sett kan du bruke dette til å for eksempel påkreve uppercase
 declare function onlyUpper<T extends string>(str: T extends Uppercase<T> ? T : never): void;
@@ -371,7 +385,8 @@ transition: fade-out
 
 ---
 ### String Manipulation types
-#
+ <br />
+
 ```ts {monaco}
 // Eller så kan man lage en funksjon som returnerer en transformert versjon av en string
 
@@ -386,7 +401,8 @@ transition: fade-out
 
 ---
 ### String Manipulation types
-#
+<br />
+
 ```ts {monaco}
 // Eller så kan man kombinere..
 
