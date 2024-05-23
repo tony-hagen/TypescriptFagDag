@@ -39,7 +39,7 @@ hideInToc: true
     <div class="flex flex-col gap-3">
             <img class="w-30%" src="imgs/Deividas Svaikauskas.jpg" alt="dave" />
         <span class="text-md">Deividas Svaikauskas</span>
-        <p class="text-sm">Bare frontend-utvikler, mentee (ikke Tony sin), volleyball pro wannabe. Mest erfaring med React, Typescript og Vue.</p>
+        <p class="text-sm">Bare frontend-utvikler, mentee (ikke Tony sin), volleyball pro wannabe. Mest erfaring med React, Typescript og diverse CSS biblioteker.</p>
     </div>
 </div>
 
